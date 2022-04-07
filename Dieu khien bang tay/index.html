@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Car Controller </title>
+	<link href="bootstrap.min.css" rel="stylesheet" media="screen"> 
+    <!-- <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+	<script src="jquery.js"></script>
+    <script>
+		
+        $(function(){
+			var isTouchDevice = "ontouchstart" in document.documentElement ? true : false;
+			var BUTTON_DOWN   = isTouchDevice ? "touchstart" : "mousedown";
+			var BUTTON_UP     = isTouchDevice ? "touchend"   : "mouseup";
+			
+            $("button").bind(BUTTON_DOWN,function(){
+                $.post("/cmd",this.id,function(data,status){
+                });
+            });
+
+			$("button").bind(BUTTON_UP,function(){
+                $.post("/cmd","stop",function(data,status){
+                });
+            });
+			
+			$('input').change(function() {
+				var speed = this.value;
+				$.post('/cmd', {speed: speed});;
+			});
+        });
+		
+    </script>
+
+	<style type="text/css">
+		button {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+		input {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+    </style>
+	
+</head>
+<body>
+<div id="container" class="container" align="center"> 
+	<table align="center">
+		<tr>
+			<td align="center"><b>Motor Control</b></td>
+		</tr>
+		<tr>
+			<td>
+				<div align="center">
+					<button id="forward" class="btn btn-lg btn-primary glyphicon glyphicon-circle-arrow-up"></button>
+				</div>
+				<div align="center">
+					<button id='turnleft' class="btn btn-lg btn-primary glyphicon glyphicon-circle-arrow-left"></button>
+					<button id='turnright' class="btn btn-lg btn-primary glyphicon glyphicon-circle-arrow-right"></button>
+				</div>
+				<div align="center">
+					<button id='backward' class="btn btn-lg btn-primary glyphicon glyphicon-circle-arrow-down"></button>
+				</div>
+				
+				<div align="center">
+					<button id='pumpOn' class="btn btn-lg btn-primary glyphicon ">on</button>
+					<button id='pumpOff' class="btn btn-lg btn-primary glyphicon ">off</button>
+				</div>
+			</td>
+	</table>
+</div>
+</body>
+</html>

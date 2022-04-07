@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot trợ lý bác sĩ </title>\
+   <link href="css/cp.css" rel="stylesheet" type="text/css">  
+   <script src="js/jquery.min.js"></script>        
+   <script src="js/cp.js"></script>     
+    <!-- <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+	<script src="jquery.js"></script>
+    
+
+	<style type="text/css">
+		button {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+		input {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+    </style>
+	
+</head>
+<body>
+	<div id="container" class="container" align="center">
+		<div style="width:60%; height:40px; line-height:40px; text-align:center; font-size:20px; color:white; background-color:blue; margin:auto">
+		Phần mềm điều khiển robot
+		</div><br><br>
+	
+		
+		<iframe src=':8002' id='box_video'></iframe>
+
+		 <script>
+			document.getElementById('box_video').src = window.location.protocol + "//" + window.location.hostname + ":8002/";
+		 </script>
+
+		 <iframe src= ':8001' id='box_remote'></iframe>
+
+		 <script>
+			document.getElementById('box_remote').src = window.location.protocol + "//" + window.location.hostname + ":8001/";
+		 </script>					
+			
+	</div>
+
+	<div align='center' class='box_inner'>
+		<div class='box_controls' style='width:14%'><zz>
+			<label class='floatLabel'>Camera</label><br>
+			<input id='cam_on' type='submit' onclick=camera('on'); value='Bật'/>
+			<input id='cam_off' type='submit' onclick=camera('off'); value='Tắt'/>
+			<br><txt> .</txt></zz>
+		</div>
+		
+		<div class='box_controls' style='width:14%'><zz>
+			<label class='floatLabel'>Lights</label><br>
+			<input id='camlight' type='submit' onclick=toggle_light('camlight'); value='Bật'/>
+			<input id='headlight' type='submit' onclick=toggle_light('headlight'); value='Tắt'/>
+			<br><txt>Camera</txt><txt>Front</txt></zz>
+		</div>
+		
+		<div class='box_controls' style='width:30%'><zz>
+			<label class='floatLabel' style='width: 120px;'>Các chức năng robot</label><br>
+			<div style='float:left;width:98%;border:0px solid red'>
+				<div class='tooltip' style='width:30%'>
+					<a href='https://192.168.1.225:8003' target='_blank'>
+						<button style='width:85%;background-color:#fcfcc5'>Robot đi theo sau</button>
+					</a>
+					<span class='tooltiptext'>Robot đi theo sau</a></span>
+				</div>
+				<div class='tooltip' style='width:30%'>
+					<a href="/other/" onclick="javascript:event.target.port=8083" target='_blank'>
+						<button style='width:85%;background-color:#fcfcc5'>Camera hồng ngoại</button>
+					</a>
+
+					<span class='tooltiptext'>Camera hồng ngoại</span>
+				</div>
+				<div class='tooltip' style='width:30%'>
+					<a href='https://192.168.1.225/earthrover/compass' target='_blank'>
+						<button style='width:85%;background-color:#fcfcc5'>Quản lý dữ liệu bệnh nhân</button>
+					</a>
+					<span class='tooltiptext'>Quản lý dữ liệu bệnh nhân</span>
+				</div>
+			</div></zz>
+		</div>
+	</div>
+</body>
+</html>
